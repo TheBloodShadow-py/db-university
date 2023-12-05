@@ -56,7 +56,7 @@ JOIN
 
 
 -7 (BONUS)
-    SELECT students.id as "student_id", students.name as "student_name", students.surname as "student.surname", MAX(exam_student.vote) as "max_vote", COUNT(exam_student.student_id) as "exam_attempts"
+    SELECT students.id AS "student_id", students.name AS "student_name", students.surname AS "student.surname", MAX(exam_student.vote) AS "max_vote", COUNT(exam_student.student_id) AS "exam_attempts"
     FROM students
     INNER JOIN exam_student
     ON students.id = exam_student.student_id
@@ -64,3 +64,31 @@ JOIN
     ON exams.id = exam_student.exam_id
     WHERE exam_student.vote > 18
     GROUP BY students.id;
+
+
+
+
+GROUP BY
+
+-1  SELECT YEAR(enrolment_date) AS "year", count(enrolment_date) AS "new_students"
+    FROM students
+    GROUP BY YEAR(enrolment_date);
+
+
+-2  SELECT teachers.office_address AS "office_address", COUNT(teachers.office_address) AS "teachers_number"
+    FROM teachers
+    GROUP BY teachers.office_address;
+
+
+-3  SELECT exams.date AS "exam_date", AVG(exam_student.vote) AS "avg_vote"
+    FROM exams
+    INNER JOIN exam_student
+    ON exams.id = exam_student.exam_id
+    GROUP BY exams.date;
+
+
+-4  SELECT departments.name AS "department_name", COUNT(degrees.name) AS "degrees_count"
+    FROM departments
+    INNER JOIN degrees
+    ON departments.id = degrees.department_id
+    GROUP BY departments.name;
